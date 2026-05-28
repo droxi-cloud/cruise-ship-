@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MSC 地中海榮耀號 完全攻略手冊</title>
+<style>
+/* ===== CSS Variables ===== */
+:root {
+  --navy: #0C447C;
+  --blue: #185FA5;
+  --blue-light: #378ADD;
+  --teal: #1D9E75;
+  --teal-light: #2DC98F;
+  --white: #FFFFFF;
+  --bg: #F4F7FB;
+  --bg-card: #FFFFFF;
+  --text: #1A2535;
+  --text-sub: #5A6A80;
+  --border: #DDE5F0;
+  --tip-bg: #EAF3DE;
+  --tip-border: #639922;
+  --tip-text: #3B6D11;
+  --warn-bg: #FAEEDA;
+  --warn-border: #BA7517;
+  --warn-text: #854F0B;
+  --danger-bg: #FCEBEB;
+  --danger-border: #E24B4A;
+  --danger-text: #A32D2D;
+  --shadow-sm: 0 1px 4px rgba(12,68,124,0.07);
+  --shadow-md: 0 4px 16px rgba(12,68,124,0.10);
+  --shadow-lg: 0 8px 32px rgba(12,68,124,0.13);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+/* ===== Top Nav Bar ===== */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--navy);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+}
+.topbar-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.topbar-inner::-webkit-scrollbar { display: none; }
+.nav-btn {
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.72);
+  padding: 12px 14px;
+  font-size: 12.5px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.nav-btn:hover { color: #fff; background: rgba(255,255,255,0.08); }
+.nav-btn.active {
+  color: #fff;
+  border-bottom-color: var(--teal-light);
+  font-weight: 600;
+}
+
+/* ===== Main Layout ===== */
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+/* ===== Hero Cover ===== */
+.cover {
+  background: linear-gradient(135deg, #0C447C 0%, #185FA5 50%, #1D9E75 100%);
+  border-radius: var(--radius-xl);
+  padding: 36px 32px;
+  color: #fff;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+}
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: 40px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+}
+.cover-icon { font-size: 48px; margin-bottom: 12px; }
+.cover h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+.cover-sub { font-size: 15px; opacity: 0.88; margin-bottom: 4px; }
+.cover-date { font-size: 13px; opacity: 0.72; margin-bottom: 18px; }
+.cover-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge {
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.28);
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  color: #fff;
+  backdrop-filter: blur(4px);
+}
+
+/* ===== Section ===== */
+.section { display: none; animation: fadeIn 0.25s ease; }
+.section.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.sec-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--blue-light);
+}
+.sec-icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--navy), var(--blue));
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.sec-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+/* ===== Grid ===== */
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-bottom: 16px; }
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 16px; }
+
+/* ===== Card ===== */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s;
+}
+.card:hover { box-shadow: var(--shadow-md); }
+.card h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.card h4 {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-sub);
+}
+
+/* ===== Info Row ===== */
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.info-row:last-child { border-bottom: none; }
+.info-label {
+  color: var(--text-sub);
+  min-width: 120px;
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 500;
+  padding-top: 1px;
+}
+.info-val { color: var(--text); line-height: 1.55; }
+
+/* ===== Alert Boxes ===== */
+.tip, .warn, .danger {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  margin: 10px 0;
+  line-height: 1.55;
+  border-left-width: 4px;
+  border-left-style: solid;
+}
+.tip { background: var(--tip-bg); border-color: var(--tip-border); color: var(--tip-text); }
+.warn { background: var(--warn-bg); border-color: var(--warn-border); color: var(--warn-text); }
+.danger { background: var(--danger-bg); border-color: var(--danger-border); color: var(--danger-text); }
+
+/* ===== Tags ===== */
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  margin: 2px;
+}
+.tag-blue { background: #E6F1FB; color: #0C447C; }
+.tag-green { background: #EAF3DE; color: #3B6D11; }
+.tag-amber { background: #FAEEDA; color: #854F0B; }
+.tag-red { background: #FCEBEB; color: #A32D2D; }
+.tag-purple { background: #EEEDFE; color: #3C3489; }
+.tag-teal { background: #E1F5EE; color: #0F6E56; }
+
+/* ===== Checklist ===== */
+.checklist { list-style: none; padding: 0; }
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  line-height: 1.5;
+  transition: background 0.15s;
+}
+.checklist li:last-child { border-bottom: none; }
+.checklist li:hover { background: rgba(55,138,221,0.04); border-radius: 6px; }
+.checklist input[type=checkbox] {
+  margin-top: 2px;
+  flex-shrink: 0;
+  width: 16px; height: 16px;
+  cursor: pointer;
+  accent-color: var(--blue);
+}
+.checklist label { cursor: pointer; color: var(--text); }
+.checklist input:checked + label {
+  color: var(--text-sub);
+  text-decoration: line-through;
+}
+
+/* ===== Progress Bar ===== */
+.progress-wrap {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-sub);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.progress-bar {
+  background: var(--border);
+  border-radius: 10px;
+  height: 8px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--blue), var(--teal));
+  transition: width 0.4s ease;
+}
+.progress-pct {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-top: 6px;
+}
+
+/* ===== Table ===== */
+.table-wrap { overflow-x: auto; margin: 10px 0; border-radius: var(--radius-md); border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead th {
+  background: linear-gradient(90deg, #EBF2FB, #E6F4F1);
+  color: var(--navy);
+  font-weight: 700;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 2px solid var(--border);
+  white-space: nowrap;
+}
+tbody td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+  line-height: 1.5;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: rgba(55,138,221,0.04); }
+
+/* ===== Timeline ===== */
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--blue), var(--teal));
+  border-radius: 2px;
+}
+.t-item { position: relative; margin-bottom: 18px; }
+.t-dot {
+  position: absolute;
+  left: -22px; top: 4px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--blue);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px var(--blue);
+}
+.t-time {
+  font-size: 11px;
+  color: var(--blue);
+  margin-bottom: 3px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.t-text { font-size: 13.5px; line-height: 1.55; color: var(--text); }
+
+/* ===== Day Header ===== */
+.day-header {
+  background: linear-gradient(90deg, var(--navy), var(--teal));
+  color: #fff;
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+}
+.day-header span { font-size: 12px; opacity: 0.85; font-weight: 400; }
+
+/* ===== Mistake Items ===== */
+.mistake-item {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.mistake-item:last-child { border-bottom: none; }
+.mistake-num {
+  background: linear-gradient(135deg, var(--danger-border), #c0392b);
+  color: #fff;
+  border-radius: 50%;
+  width: 26px; height: 26px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(226,75,74,0.3);
+}
+
+/* ===== Lazy Item ===== */
+.lazy-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.lazy-item:last-child { border-bottom: none; }
+.lazy-icon {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+/* ===== Stat Cards ===== */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 18px; }
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px 14px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+.stat-card .stat-icon { font-size: 26px; margin-bottom: 6px; }
+.stat-card .stat-val { font-size: 20px; font-weight: 800; color: var(--navy); line-height: 1; margin-bottom: 4px; }
+.stat-card .stat-label { font-size: 11px; color: var(--text-sub); font-weight: 500; }
+
+/* ===== Highlight Box ===== */
+.highlight-box {
+  background: linear-gradient(135deg, #EBF2FB, #E6F4F1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  margin-bottom: 16px;
+}
+.highlight-box h3 { color: var(--navy); font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+
+/* ===== Section 6 Shopping ===== */
+.shop-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.shop-item:last-child { border-bottom: none; }
+.shop-badge {
+  flex-shrink: 0;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 44px;
+  text-align: center;
+}
+
+/* ===== Back to Top ===== */
+#back-top {
+  position: fixed;
+  bottom: 24px; right: 20px;
+  width: 44px; height: 44px;
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  transition: background 0.2s, transform 0.2s;
+}
+#back-top:hover { background: var(--blue); transform: translateY(-2px); }
+#back-top.show { display: flex; }
+
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+  .cover { padding: 24px 18px; }
+  .cover h1 { font-size: 20px; }
+  .main { padding: 16px 10px 40px; }
+  .nav-btn { padding: 10px 10px; font-size: 11.5px; }
+  .grid2, .grid3 { grid-template-columns: 1fr; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .sec-title { font-size: 17px; }
+  .day-header { flex-direction: column; align-items: flex-start; gap: 2px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== TOP NAV ===== -->
+<nav class="topbar">
+  <div class="topbar-inner">
+    <button class="nav-btn active" onclick="showSec('s1',this)">① 出發前注意</button>
+    <button class="nav-btn" onclick="showSec('s2',this)">② 行李清單</button>
+    <button class="nav-btn" onclick="showSec('s3',this)">③ 船上攻略</button>
+    <button class="nav-btn" onclick="showSec('s4',this)">④ 宮古島</button>
+    <button class="nav-btn" onclick="showSec('s5',this)">⑤ 沖繩</button>
+    <button class="nav-btn" onclick="showSec('s6',this)">⑥ 購物清單</button>
+    <button class="nav-btn" onclick="showSec('s7',this)">⑦ 每日行程</button>
+    <button class="nav-btn" onclick="showSec('s8',this)">⑧ 新手NG</button>
+    <button class="nav-btn" onclick="showSec('s9',this)">⑨ 懶人包</button>
+  </div>
+</nav>
+
+<!-- ===== MAIN ===== -->
+<div class="main">
+
+<!-- ===== HERO COVER ===== -->
+<div class="cover">
+  <div class="cover-icon">🚢</div>
+  <h1>MSC 地中海榮耀號 完全攻略手冊</h1>
+  <p class="cover-sub">MSC Bellissima｜基隆 → 宮古島 → 沖繩 → 基隆</p>
+  <p class="cover-date">2026年6月21日 – 6月25日｜五天四夜｜初次搭郵輪完全指南</p>
+  <div class="cover-badges">
+    <span class="badge">🗓 5天4夜</span>
+    <span class="badge">🌊 自由行</span>
+    <span class="badge">🏝 宮古島 + 沖繩</span>
+    <span class="badge">✈ 新手友善版</span>
+  </div>
+</div>
+
+<!-- ===== STAT SUMMARY ===== -->
+<div class="stat-grid" style="margin-bottom:24px">
+  <div class="stat-card">
+    <div class="stat-icon">📅</div>
+    <div class="stat-val">5</div>
+    <div class="stat-label">天數</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon">🏝</div>
+    <div class="stat-val">2</div>
+    <div class="stat-label">靠港地點</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon">💴</div>
+    <div class="stat-val">¥55k</div>
+    <div class="stat-label">建議日幣/人</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon">📋</div>
+    <div class="stat-val">9</div>
+    <div class="stat-label">攻略章節</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon">⚠️</div>
+    <div class="stat-val">20</div>
+    <div class="stat-label">新手NG提醒</div>
+  </div>
+</div>
+
+<!-- ============================= SECTION 1 ============================= -->
+<div class="section active" id="s1">
+  <div class="sec-header">
+    <div class="sec-icon">📋</div>
+    <div class="sec-title">搭郵輪前注意事項</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>📋 基本證件 &amp; 時間</h3>
+      <div class="info-row"><span class="info-label">護照效期</span><span class="info-val">效期需 <strong>≥ 出發日後6個月</strong>（即2026年12月21日以上）</span></div>
+      <div class="info-row"><span class="info-label">建議登船時間</span><span class="info-val">開放登船後1–1.5小時內最順（避免尖峰），通常14:00–16:00</span></div>
+      <div class="info-row"><span class="info-label">線上報到</span><span class="info-val">出發前14天可於 MSC App 或官網完成，填好後可快速過安檢</span></div>
+      <div class="info-row"><span class="info-label">最晚登船時間</span><span class="info-val">出發前至少90分鐘，逾時船不等人 ⚠️</span></div>
+      <div class="tip">✅ 線上報到可省現場30分鐘排隊，強烈建議提前完成</div>
+    </div>
+    <div class="card">
+      <h3>💰 船上消費 &amp; 日幣</h3>
+      <div class="info-row"><span class="info-label">船上付款方式</span><span class="info-val">登船時綁信用卡，自動累計到「船卡帳戶」，出港時統一刷卡</span></div>
+      <div class="info-row"><span class="info-label">船卡（Cruise Card）</span><span class="info-val">= 房卡 + 門禁卡 + 消費卡，隨時帶在身上</span></div>
+      <div class="info-row"><span class="info-label">宮古島日幣建議</span><span class="info-val">建議準備 ¥15,000–25,000/人（景點+餐食+伴手禮）</span></div>
+      <div class="info-row"><span class="info-label">沖繩日幣建議</span><span class="info-val">建議準備 ¥20,000–40,000/人（含藥妝+Donki）</span></div>
+      <div class="info-row"><span class="info-label">換匯建議</span><span class="info-val">台灣兌換（銀行/機場）匯率較優，日本港口不划算</span></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>📦 行李規定</h3>
+      <div class="info-row"><span class="info-label">托運行李</span><span class="info-val">一般無嚴格重量限制，但超大行李收費，建議單件 ≤23kg</span></div>
+      <div class="info-row"><span class="info-label">隨身行李</span><span class="info-val">可帶上船，安檢類似機場（X光機）</span></div>
+      <div class="info-row"><span class="info-label">托運送房時間</span><span class="info-val">登船後2–4小時才到房間，換裝物品請放隨身袋</span></div>
+      <div class="info-row"><span class="info-label">禁帶物品</span><span class="info-val">酒類（超量）、熨斗、延長線（除醫療用）</span></div>
+      <div class="warn">⚠️ 登船當天重要物品（藥、相機、充電線）請放隨身包，托運行李不會馬上到房</div>
+    </div>
+    <div class="card">
+      <h3>📶 網路 &amp; WiFi</h3>
+      <div class="info-row"><span class="info-label">MSC船上WiFi</span><span class="info-val">需額外購買套餐，約 USD $15–25/天，可在App預購較便宜</span></div>
+      <div class="info-row"><span class="info-label">港口訊號</span><span class="info-val">靠港時可使用日本當地SIM或漫遊，宮古島/沖繩訊號良好</span></div>
+      <div class="info-row"><span class="info-label">建議方案</span><span class="info-val">出海時購1天WiFi保緊急聯絡；靠港日用日本SIM省費用</span></div>
+      <div class="info-row"><span class="info-label">台灣SIM推薦</span><span class="info-val">遠傳/台哥大日本漫遊；或購日本ESIM（Alosim等）</span></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>🌊 暈船準備</h3>
+      <div class="info-row"><span class="info-label">藥物</span><span class="info-val">暈海寧、Bonine（美克利嗪）出發前1–2小時服用最有效</span></div>
+      <div class="info-row"><span class="info-label">穿戴裝置</span><span class="info-val">暈船手環（Sea-Bands）物理穴位壓迫，無副作用</span></div>
+      <div class="info-row"><span class="info-label">選艙建議</span><span class="info-val">選擇中層甲板、船中央艙房搖晃感最小</span></div>
+      <div class="info-row"><span class="info-label">緩解方法</span><span class="info-val">眺望遠方地平線；飲食清淡，避免出海前喝酒</span></div>
+      <div class="tip">💡 6月東海天氣多半良好，風浪相對溫和</div>
+    </div>
+    <div class="card">
+      <h3>🛂 日本入境注意</h3>
+      <div class="info-row"><span class="info-label">Visit Japan Web</span><span class="info-val">建議出發前完成線上申報，港口可快速通關</span></div>
+      <div class="info-row"><span class="info-label">入境卡</span><span class="info-val">船上會發放，提前填妥（地址填港口飯店or船名即可）</span></div>
+      <div class="info-row"><span class="info-label">攜帶食品限制</span><span class="info-val">肉製品（含肉乾）嚴禁攜入日本，違者高額罰款</span></div>
+      <div class="info-row"><span class="info-label">植物/水果</span><span class="info-val">台灣水果不可帶入日本</span></div>
+      <div class="info-row"><span class="info-label">免稅額度</span><span class="info-val">每人購物累計 ¥200,000，當日同店超¥5,000可辦退稅</span></div>
+      <div class="danger">🚫 肉類、水果、土壤入境日本一律沒收+罰款，切勿攜帶</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>💡 郵輪容易忽略的事</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>忽略點</th><th>正確做法</th></tr></thead>
+        <tbody>
+          <tr><td>忘記看「每日行程表」（Daily Planner）</td><td>每晚放在房門口，睡前必看明日活動</td></tr>
+          <tr><td>以為所有餐廳都免費</td><td>主餐廳+自助餐免費，特色餐廳需額外付費</td></tr>
+          <tr><td>小費問題</td><td>MSC已含服務費，約€14–15/人/天，確認是否已包含</td></tr>
+          <tr><td>不帶大浴巾去泳池</td><td>泳池旁有毛巾可借，但需押金或用船卡換取</td></tr>
+          <tr><td>靠港時不確認返船時間</td><td>返船時間比出發時間早1–2小時，每次靠港必確認</td></tr>
+          <tr><td>手機時區沒切換</td><td>宮古島/沖繩 = GMT+9，與台灣相同，不需調整</td></tr>
+          <tr><td>不知道緊急集合點</td><td>登船後強制安全演習，必須出席，了解救生衣位置</td></tr>
+          <tr><td>船上購物以為便宜</td><td>免稅但不一定最便宜，岸上購買通常更划算</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= SECTION 2 ============================= -->
+<div class="section" id="s2">
+  <div class="sec-header">
+    <div class="sec-icon">🎒</div>
+    <div class="sec-title">必帶物品清單</div>
+  </div>
+
+  <div class="progress-wrap" id="check-progress">
+    <div class="progress-label">
+      <span>📦 清單完成度</span>
+      <span id="prog-text">0 / 0 項</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+    <div class="progress-pct" id="prog-pct">0%</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>📄 證件類</h3>
+      <ul class="checklist">
+        <li><input type="checkbox" id="c1"><label for="c1">護照（效期超過2026/12/21）</label></li>
+        <li><input type="checkbox" id="c2"><label for="c2">MSC登船確認函/電子票</label></li>
+        <li><input type="checkbox" id="c3"><label for="c3">信用卡（綁船卡用，Visa/MasterCard）</label></li>
+        <li><input type="checkbox" id="c4"><label for="c4">日幣現金（宮¥20,000 + 沖¥35,000）</label></li>
+        <li><input type="checkbox" id="c5"><label for="c5">健保卡（意外保險備用）</label></li>
+        <li><input type="checkbox" id="c6"><label for="c6">旅遊保險文件/緊急聯絡電話</label></li>
+        <li><input type="checkbox" id="c7"><label for="c7">緊急聯絡人清單（紙本備份）</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>👗 衣物類（5天建議）</h3>
+      <ul class="checklist">
+        <li><input type="checkbox" id="c8"><label for="c8">輕便T恤 × 5–6件（船內空調冷）</label></li>
+        <li><input type="checkbox" id="c9"><label for="c9">薄外套/針織衫 × 2件（船上室內冷氣強）</label></li>
+        <li><input type="checkbox" id="c10"><label for="c10">正式晚宴服 × 1套（正式晚宴晚必穿）</label></li>
+        <li><input type="checkbox" id="c11"><label for="c11">泳裝 × 1–2件</label></li>
+        <li><input type="checkbox" id="c12"><label for="c12">防曬長袖/防曬衣（岸上觀光用）</label></li>
+        <li><input type="checkbox" id="c13"><label for="c13">舒適步行鞋（岸上觀光）</label></li>
+        <li><input type="checkbox" id="c14"><label for="c14">拖鞋/涼鞋（泳池/甲板用）</label></li>
+        <li><input type="checkbox" id="c15"><label for="c15">晚宴正式鞋 × 1雙</label></li>
+        <li><input type="checkbox" id="c16"><label for="c16">內衣褲 × 6套</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🔌 電器類</h3>
+      <ul class="checklist">
+        <li><input type="checkbox" id="c17"><label for="c17">手機充電線 + 充電頭</label></li>
+        <li><input type="checkbox" id="c18"><label for="c18">行動電源（岸上必備，船上有插座）</label></li>
+        <li><input type="checkbox" id="c19"><label for="c19">相機 + 記憶卡 + 充電器</label></li>
+        <li><input type="checkbox" id="c20"><label for="c20">萬用插頭轉接頭（MSC船上多為歐規）</label></li>
+        <li><input type="checkbox" id="c21"><label for="c21">防水手機袋/殼（泳池、海邊必備）</label></li>
+        <li><input type="checkbox" id="c22"><label for="c22">耳機（看表演/船上影音）</label></li>
+      </ul>
+      <div class="warn">⚠️ MSC Bellissima 船艙插座為歐規（Type C/F），需帶轉接頭</div>
+    </div>
+    <div class="card">
+      <h3>💊 藥品類</h3>
+      <ul class="checklist">
+        <li><input type="checkbox" id="c23"><label for="c23">暈船藥（暈海寧，出發前1小時服）</label></li>
+        <li><input type="checkbox" id="c24"><label for="c24">暈船手環 Sea-Bands</label></li>
+        <li><input type="checkbox" id="c25"><label for="c25">腸胃藥（消化酶、正露丸）</label></li>
+        <li><input type="checkbox" id="c26"><label for="c26">感冒藥、退燒藥</label></li>
+        <li><input type="checkbox" id="c27"><label for="c27">OK繃、消毒棉片</label></li>
+        <li><input type="checkbox" id="c28"><label for="c28">過敏藥（花粉/食物過敏備用）</label></li>
+        <li><input type="checkbox" id="c29"><label for="c29">個人慢性病藥（多帶1–2天份）</label></li>
+        <li><input type="checkbox" id="c30"><label for="c30">止痛藥（普拿疼/布洛芬）</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🛳 船上必備小物</h3>
+      <ul class="checklist">
+        <li><input type="checkbox" id="c31"><label for="c31">小型磁鐵扣（貼船艙門，掛東西用）</label></li>
+        <li><input type="checkbox" id="c32"><label for="c32">保溫杯（自助餐區裝咖啡/飲料）</label></li>
+        <li><input type="checkbox" id="c33"><label for="c33">輕便腰包/斜背包（岸上觀光）</label></li>
+        <li><input type="checkbox" id="c34"><label for="c34">摺疊環保袋（採買伴手禮）</label></li>
+        <li><input type="checkbox" id="c35"><label for="c35">夾子/掛勾（船艙空間善用）</label></li>
+        <li><input type="checkbox" id="c36"><label for="c36">耳塞（鄰艙聲音或靠港停船噪音）</label></li>
+        <li><input type="checkbox" id="c37"><label for="c37">眼罩（甲板睡眠/陽光強烈）</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>☀️ 防曬用品</h3>
+      <ul class="checklist">
+        <li><input type="checkbox" id="c38"><label for="c38">防曬乳 SPF50+ PA++++ × 2條</label></li>
+        <li><input type="checkbox" id="c39"><label for="c39">防曬噴霧（補擦方便）</label></li>
+        <li><input type="checkbox" id="c40"><label for="c40">帽子（遮陽帽或鴨舌帽）</label></li>
+        <li><input type="checkbox" id="c41"><label for="c41">太陽眼鏡（UV400）</label></li>
+        <li><input type="checkbox" id="c42"><label for="c42">護唇膏（SPF防曬款）</label></li>
+      </ul>
+      <div class="tip">💡 6月宮古島/沖繩紫外線極強，等同台灣夏日×1.5，務必充分防曬</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>❌ 這些其實不用帶</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>不用帶的東西</th><th>原因</th></tr></thead>
+        <tbody>
+          <tr><td>洗髮乳/潤髮乳/沐浴乳</td><td>船艙房間全部提供</td></tr>
+          <tr><td>吹風機</td><td>每間船艙皆有吹風機</td></tr>
+          <tr><td>浴袍/大浴巾</td><td>船艙提供</td></tr>
+          <tr><td>大量現金</td><td>船上刷船卡，岸上日幣夠用即可</td></tr>
+          <tr><td>雨傘（大型）</td><td>船上甲板的大風會讓雨傘毫無用處，帶輕便雨衣代替</td></tr>
+          <tr><td>書本/大型娛樂設備</td><td>船上節目豐富，通常沒時間看書</td></tr>
+          <tr><td>換裝過多（超過5套正裝）</td><td>郵輪行程節奏緊湊，多帶增加行李重量</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= SECTION 3 ============================= -->
+<div class="section" id="s3">
+  <div class="sec-header">
+    <div class="sec-icon">🚢</div>
+    <div class="sec-title">MSC Bellissima 船上攻略</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>🎯 必玩設施</h3>
+      <div class="info-row"><span class="info-label">🎠 Galaxy Pavilion</span><span class="info-val">VR遊樂場，含VR過山車、模擬賽車，部分收費約€3–8/項</span></div>
+      <div class="info-row"><span class="info-label">🏊 泳池甲板</span><span class="info-val">多個泳池＋水滑梯（兒童/成人分區），白天開放，免費</span></div>
+      <div class="info-row"><span class="info-label">🎰 賭場</span><span class="info-val">僅限出海時開放，可體驗感受氣氛（注意預算）</span></div>
+      <div class="info-row"><span class="info-label">🎳 保齡球</span><span class="info-val">收費約€5/局，人少時立刻去，免等</span></div>
+      <div class="info-row"><span class="info-label">🎭 劇院秀</span><span class="info-val">MSC Carousel劇院，每晚大型歌舞/馬戲秀，完全免費</span></div>
+      <div class="info-row"><span class="info-label">🏋️ 健身房</span><span class="info-val">基本免費使用，Technogym設備，早上6點–晚上10點</span></div>
+      <div class="info-row"><span class="info-label">🎤 卡拉OK</span><span class="info-val">免費，多語言曲目，晚餐後熱鬧</span></div>
+    </div>
+    <div class="card">
+      <h3>🍽 餐廳攻略</h3>
+      <div class="info-row"><span class="info-label">自助餐（免費）</span><span class="info-val">La Piazza Buffet，早7–10點 / 中12–2點 / 晚6–9點，品項豐富</span></div>
+      <div class="info-row"><span class="info-label">主餐廳（免費）</span><span class="info-val">The Manhattan / Villa Rossa等，套餐式服務，需著裝，提前訂位</span></div>
+      <div class="info-row"><span class="info-label">特色餐廳（付費）</span><span class="info-val">Hanbao漢堡店 €5、Chicken Piri Piri等，€10–30不等</span></div>
+      <div class="info-row"><span class="info-label">宵夜</span><span class="info-val">自助餐區午夜前多有宵夜，或甲板Grab &amp; Go小點</span></div>
+      <div class="info-row"><span class="info-label">早餐推薦</span><span class="info-val">主餐廳早餐服務品質較佳（非高峰期），7:30–8:30人最少</span></div>
+      <div class="tip">💡 主餐廳正式晚餐選擇「晚餐A」（約6:30pm）比「晚餐B」（約8:30pm）人少且品質穩定</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>📱 MSC App 使用指南</h3>
+      <div class="info-row"><span class="info-label">下載時機</span><span class="info-val">出發前先下載「MSC for Me」APP</span></div>
+      <div class="info-row"><span class="info-label">主要功能</span><span class="info-val">查每日活動、預約餐廳/設施、查帳單、收訊息</span></div>
+      <div class="info-row"><span class="info-label">船內WiFi</span><span class="info-val">MSC App基本功能在船內WiFi下免費使用（部分功能）</span></div>
+      <div class="info-row"><span class="info-label">Daily Planner</span><span class="info-val">查今日/明日所有活動時間表，必看必用</span></div>
+      <div class="info-row"><span class="info-label">餐廳預訂</span><span class="info-val">可透過App預訂特色餐廳，避免現場排隊</span></div>
+      <div class="tip">💡 每天早上10分鐘，用App規劃當天行程，效率最高</div>
+    </div>
+    <div class="card">
+      <h3>💸 省錢技巧</h3>
+      <div class="info-row"><span class="info-label">飲料</span><span class="info-val">自助餐區有免費水/果汁/咖啡，不需另購飲料套餐</span></div>
+      <div class="info-row"><span class="info-label">表演娛樂</span><span class="info-val">每晚大型劇場秀、戶外活動大多完全免費</span></div>
+      <div class="info-row"><span class="info-label">SPA</span><span class="info-val">SPA試用體驗有時有優惠，但要當心推銷套餐</span></div>
+      <div class="info-row"><span class="info-label">岸上行程</span><span class="info-val">不買MSC官方岸上行程，自行安排省50%以上</span></div>
+      <div class="info-row"><span class="info-label">船上購物</span><span class="info-val">名牌免稅店不一定最便宜，岸上藥妝Donki更划算</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>⏰ 人流規律 &amp; 最佳時段</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>地點</th><th>尖峰時段</th><th>建議時段</th><th>備注</th></tr></thead>
+        <tbody>
+          <tr><td>自助餐早餐</td><td>8:30–9:30</td><td>7:00–8:00</td><td>靠港日更擁擠（大家早起下船）</td></tr>
+          <tr><td>泳池甲板</td><td>14:00–17:00</td><td>9:00–11:00 / 晚上</td><td>出海日最擁擠</td></tr>
+          <tr><td>劇場大秀</td><td>第一場</td><td>第二場（晚10點）</td><td>深夜場座位充足</td></tr>
+          <tr><td>Galaxy VR</td><td>下午3–5點</td><td>上午11點前</td><td>靠港日人最少</td></tr>
+          <tr><td>健身房</td><td>早8–10點</td><td>下午4–6點</td><td>靠港日無人使用</td></tr>
+          <tr><td>SPA</td><td>下午</td><td>早上或晚上</td><td>提前預約必要</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📌 哪些需要提前預約</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>項目</th><th>何時預約</th><th>方式</th></tr></thead>
+        <tbody>
+          <tr><td>特色餐廳（付費）</td><td>登船第一天立刻預約</td><td>MSC App 或 服務台</td></tr>
+          <tr><td>主餐廳固定座位</td><td>出發前線上或登船當天</td><td>官網/App</td></tr>
+          <tr><td>SPA項目</td><td>提前1–2天</td><td>MSC App 或 SPA前台</td></tr>
+          <tr><td>Galaxy VR熱門項目</td><td>登船後直接前往登記</td><td>現場</td></tr>
+          <tr><td>晚宴特別場次</td><td>航行第1晚前確認</td><td>服務台</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip">✅ 登船後的第一件事：去服務台確認餐廳預訂、拿每日行程表、了解安全演習時間</div>
+  </div>
+</div>
+
+<!-- ============================= SECTION 4 ============================= -->
+<div class="section" id="s4">
+  <div class="sec-header">
+    <div class="sec-icon">🏝</div>
+    <div class="sec-title">宮古島攻略</div>
+  </div>
+
+  <div class="card">
+    <h3>🗺 宮古島一日行程推薦路線</h3>
+    <div class="timeline">
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">08:30 靠港</div><div class="t-text">下船過安檢（預計9:00前可自由活動）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">09:00–10:00</div><div class="t-text">🚕 搭計程車前往「與那霸前濱海灘」— 日本最美海灘之一，藍白漸層水色，絕對必去</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">10:00–11:30</div><div class="t-text">🏝 海灘拍照+游泳，準備防曬（紫外線超強），6月水溫舒適約27°C</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">11:30–13:00</div><div class="t-text">🍜 平良港附近午餐（沖繩麵/海鮮蓋飯）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">13:00–15:00</div><div class="t-text">🛍 平良市區逛藥妝（Cosmos藥妝）、超市（サンエー）、伴手禮</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">15:00–16:00</div><div class="t-text">📸 東平安名崎（燈塔+海崖景觀，絕美打卡點）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">16:30</div><div class="t-text">⚠️ 最晚返船時間（確認船方通知，通常提前1.5小時回碼頭）</div></div>
+    </div>
+    <div class="danger">🚨 宮古島港口到市區需計程車，無固定公車，事先確認返船時間非常重要</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>📸 必去景點</h3>
+      <div class="info-row"><span class="info-label">🏖 與那霸前濱海灘</span><span class="info-val">「東洋第一美沙灘」，7km白色細沙，必去 ★★★★★</span></div>
+      <div class="info-row"><span class="info-label">🌊 砂山海灘</span><span class="info-val">清澈見底水色，礁岩天然拱門，拍照神點</span></div>
+      <div class="info-row"><span class="info-label">🗼 東平安名崎</span><span class="info-val">燈塔+海崖景觀，絕美打卡點</span></div>
+      <div class="info-row"><span class="info-label">🌉 池間大橋</span><span class="info-val">跨海大橋景觀，兩側都是珊瑚礁海，車/腳踏車皆可</span></div>
+      <div class="info-row"><span class="info-label">🏙 平良市區</span><span class="info-val">港口附近購物、餐食主要集中區</span></div>
+    </div>
+    <div class="card">
+      <h3>🚗 交通 &amp; 移動方式</h3>
+      <div class="info-row"><span class="info-label">計程車</span><span class="info-val">港口前方即有計程車，跳表制，市區約¥700–1,500，郊區景點¥2,000–4,000</span></div>
+      <div class="info-row"><span class="info-label">租車</span><span class="info-val">一日遊最彈性，需日本駕照或國際駕照，費用約¥6,000–8,000/天</span></div>
+      <div class="info-row"><span class="info-label">腳踏車/電動車</span><span class="info-val">市區可租，炎熱季節體力消耗大，景點距離遠建議租車</span></div>
+      <div class="info-row"><span class="info-label">バス（公車）</span><span class="info-val">班次少且不定時，不建議郵輪旅客使用</span></div>
+      <div class="warn">⚠️ 宮古島景點分散，沒有租車自行規劃時間很難掌控，建議事先聯絡計程車包車</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>🍱 必吃美食</h3>
+      <div class="info-row"><span class="info-label">宮古そば</span><span class="info-val">宮古島特色麵，豚骨+柴魚清湯，必吃 ¥800–1,200</span></div>
+      <div class="info-row"><span class="info-label">海鮮蓋飯</span><span class="info-val">港口附近新鮮漁獲，¥1,200–2,000</span></div>
+      <div class="info-row"><span class="info-label">宮古牛</span><span class="info-val">島內品牌和牛，燒肉或牛排，¥2,000+</span></div>
+      <div class="info-row"><span class="info-label">マンゴーかき氷</span><span class="info-val">宮古島芒果刨冰，夏日必吃，¥600–900</span></div>
+    </div>
+    <div class="card">
+      <h3>🛒 宮古島必買伴手禮</h3>
+      <div class="info-row"><span class="info-label">雪塩</span><span class="info-val">宮古島名產海鹽，各種口味，¥500–1,500</span></div>
+      <div class="info-row"><span class="info-label">泡盛</span><span class="info-val">沖繩/宮古島特產蒸餾酒，¥1,000–3,000</span></div>
+      <div class="info-row"><span class="info-label">宮古上布</span><span class="info-val">傳統紡織品，精緻紀念品</span></div>
+      <div class="info-row"><span class="info-label">Cosmos藥妝</span><span class="info-val">平良市區，藥妝+日用品，價格合理</span></div>
+      <div class="info-row"><span class="info-label">サンエー超市</span><span class="info-val">在地超市，食品伴手禮首選</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= SECTION 5 ============================= -->
+<div class="section" id="s5">
+  <div class="sec-header">
+    <div class="sec-icon">🏯</div>
+    <div class="sec-title">沖繩那霸攻略</div>
+  </div>
+
+  <div class="card">
+    <h3>🗺 沖繩那霸一日行程推薦路線</h3>
+    <div class="timeline">
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">07:30</div><div class="t-text">🍽 早餐後盡快下船（沖繩港口到國際通約15–20分鐘車程）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">09:00–11:00</div><div class="t-text">🏰 首里城（世界遺產，門票¥400，值得一去）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">11:00–13:00</div><div class="t-text">🛍 国際通逛街：紅芋タルト御菓子御殿、ちんすこう名店</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">13:00–14:00</div><div class="t-text">🍱 国際通旁午餐（沖繩チャンプルー、ソーキそば）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">14:00–16:30</div><div class="t-text">💊 Donki + 松本清藥妝大採購（帶夠袋子！準備好購物清單）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">16:30</div><div class="t-text">⚠️ 返船（確認最晚時間，通常17:00–18:00）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">晚上</div><div class="t-text">🎭 船上最後一個夜晚大秀 + 特色餐廳晚餐（如有預約）</div></div>
+    </div>
+    <div class="warn">⚠️ 沖繩是採購主戰場，帶夠購物袋+行李空間，Donki人多請保持警覺</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>📸 必去景點</h3>
+      <div class="info-row"><span class="info-label">🏯 首里城</span><span class="info-val">世界遺產，琉球王國歷史象徵，門票¥400，必去</span></div>
+      <div class="info-row"><span class="info-label">🛍 国際通</span><span class="info-val">那霸最熱鬧商業街，購物/美食/伴手禮一條街</span></div>
+      <div class="info-row"><span class="info-label">🏺 壺屋やちむん通り</span><span class="info-val">傳統陶器街，沖繩特色工藝品</span></div>
+      <div class="info-row"><span class="info-label">🌊 波上宮</span><span class="info-val">沖繩最古老神社，海崖上的神社，免費</span></div>
+      <div class="info-row"><span class="info-label">🐠 美麗海水族館</span><span class="info-val">世界級水族館（距那霸較遠，需安排時間）</span></div>
+    </div>
+    <div class="card">
+      <h3>🍱 必吃美食</h3>
+      <div class="info-row"><span class="info-label">ソーキそば</span><span class="info-val">沖繩豬肋排麵，¥800–1,200</span></div>
+      <div class="info-row"><span class="info-label">ゴーヤーチャンプルー</span><span class="info-val">苦瓜炒豆腐，沖繩家常料理</span></div>
+      <div class="info-row"><span class="info-label">紅芋タルト</span><span class="info-val">御菓子御殿名產，必買伴手禮</span></div>
+      <div class="info-row"><span class="info-label">ちんすこう</span><span class="info-val">沖繩傳統餅乾，各種口味</span></div>
+      <div class="info-row"><span class="info-label">海ぶどう</span><span class="info-val">海葡萄，沖繩特有海藻，口感特別</span></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>💊 藥妝採購重點</h3>
+      <div class="info-row"><span class="info-label">ドン・キホーテ（Donki）</span><span class="info-val">国際通附近，24小時，品項最齊全，可退稅</span></div>
+      <div class="info-row"><span class="info-label">松本清</span><span class="info-val">藥妝連鎖，品質穩定，常有特價</span></div>
+      <div class="info-row"><span class="info-label">ツルハドラッグ</span><span class="info-val">北海道系藥妝，部分商品獨家</span></div>
+      <div class="info-row"><span class="info-label">退稅注意</span><span class="info-val">同店當日購物超¥5,000可辦退稅，需護照</span></div>
+    </div>
+    <div class="card">
+      <h3>🚌 那霸交通</h3>
+      <div class="info-row"><span class="info-label">單軌電車（ゆいレール）</span><span class="info-val">那霸市內最方便，首里城/国際通均可到達</span></div>
+      <div class="info-row"><span class="info-label">計程車</span><span class="info-val">港口到国際通約¥1,500–2,000</span></div>
+      <div class="info-row"><span class="info-label">公車</span><span class="info-val">路線複雜，不熟悉者建議搭電車或計程車</span></div>
+      <div class="tip">💡 那霸港到国際通可搭單軌電車，方便又省錢</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= SECTION 6 ============================= -->
+<div class="section" id="s6">
+  <div class="sec-header">
+    <div class="sec-icon">🛒</div>
+    <div class="sec-title">購物清單</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>💊 藥妝必買清單（Donki/松本清）</h3>
+      <div class="shop-item"><span class="shop-badge tag-blue">護膚</span><span>肌研極潤玻尿酸化妝水/乳液</span></div>
+      <div class="shop-item"><span class="shop-badge tag-blue">護膚</span><span>MINON氨基酸保濕系列（敏感肌首選）</span></div>
+      <div class="shop-item"><span class="shop-badge tag-blue">護膚</span><span>雪肌精化妝水</span></div>
+      <div class="shop-item"><span class="shop-badge tag-green">藥品</span><span>龍角散喉糖（各口味）</span></div>
+      <div class="shop-item"><span class="shop-badge tag-green">藥品</span><span>命之母A（女性保健）</span></div>
+      <div class="shop-item"><span class="shop-badge tag-green">藥品</span><span>正露丸（腸胃藥）</span></div>
+      <div class="shop-item"><span class="shop-badge tag-green">藥品</span><span>EVE止痛藥</span></div>
+      <div class="shop-item"><span class="shop-badge tag-amber">防曬</span><span>安耐曬金鑽防曬 SPF50+</span></div>
+      <div class="shop-item"><span class="shop-badge tag-amber">防曬</span><span>碧柔防曬噴霧 SPF50+</span></div>
+      <div class="shop-item"><span class="shop-badge tag-purple">美妝</span><span>CANMAKE眼影/腮紅</span></div>
+      <div class="shop-item"><span class="shop-badge tag-purple">美妝</span><span>KATE眼線筆</span></div>
+      <div class="shop-item"><span class="shop-badge tag-red">食品</span><span>各式零食/泡麵（限量口味）</span></div>
+    </div>
+    <div class="card">
+      <h3>🏝 沖繩/宮古島伴手禮清單</h3>
+      <div class="shop-item"><span class="shop-badge tag-teal">沖繩</span><span>紅芋タルト（御菓子御殿）</span></div>
+      <div class="shop-item"><span class="shop-badge tag-teal">沖繩</span><span>ちんすこう（各種口味禮盒）</span></div>
+      <div class="shop-item"><span class="shop-badge tag-teal">沖繩</span><span>泡盛（沖繩蒸餾酒）</span></div>
+      <div class="shop-item"><span class="shop-badge tag-teal">沖繩</span><span>シークヮーサー（扁實檸檬）飲料</span></div>
+      <div class="shop-item"><span class="shop-badge tag-teal">沖繩</span><span>海ぶどう（海葡萄）醬料包</span></div>
+      <div class="shop-item"><span class="shop-badge tag-blue">宮古</span><span>雪塩（各種口味）</span></div>
+      <div class="shop-item"><span class="shop-badge tag-blue">宮古</span><span>宮古島マンゴー加工品</span></div>
+      <div class="shop-item"><span class="shop-badge tag-blue">宮古</span><span>泡盛（宮古島限定款）</span></div>
+      <div class="shop-item"><span class="shop-badge tag-blue">宮古</span><span>雪塩ちんすこう（限定口味）</span></div>
+      <div class="warn">⚠️ 購物時注意行李重量，建議預留20%空間給戰利品</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>💰 預算參考</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>項目</th><th>宮古島</th><th>沖繩那霸</th><th>備注</th></tr></thead>
+        <tbody>
+          <tr><td>交通費</td><td>¥3,000–6,000</td><td>¥2,000–4,000</td><td>計程車/電車</td></tr>
+          <tr><td>餐食</td><td>¥2,000–3,500</td><td>¥2,000–3,500</td><td>午餐+小食</td></tr>
+          <tr><td>景點門票</td><td>¥0–500</td><td>¥400–800</td><td>首里城等</td></tr>
+          <tr><td>藥妝購物</td><td>¥3,000–8,000</td><td>¥10,000–20,000</td><td>Donki/松本清</td></tr>
+          <tr><td>伴手禮</td><td>¥3,000–5,000</td><td>¥3,000–8,000</td><td>依個人需求</td></tr>
+          <tr><td><strong>合計建議</strong></td><td><strong>¥15,000–25,000</strong></td><td><strong>¥20,000–40,000</strong></td><td>每人</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= SECTION 7 ============================= -->
+<div class="section" id="s7">
+  <div class="sec-header">
+    <div class="sec-icon">📅</div>
+    <div class="sec-title">每日行程規劃</div>
+  </div>
+
+  <div class="day-header"><div>Day 1｜6/21（週日）基隆登船</div><span>出發日 — 登船探索</span></div>
+  <div class="card">
+    <div class="timeline">
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">11:00–13:00</div><div class="t-text">🚌 前往基隆港（建議提前抵達，避免塞車）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">13:00–14:00</div><div class="t-text">🚢 登船！前往房間，放下隨身行李（托運行李下午才送到）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">14:00–15:00</div><div class="t-text">📍 強制安全演習（救生衣穿法、緊急集合點），全體必須出席</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">15:00–17:00</div><div class="t-text">🗺 探索全船設施：泳池、甲板、劇場位置、自助餐廳、Galaxy VR</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">17:00–18:00</div><div class="t-text">🍽 預訂特色餐廳（趁早！熱門時段容易客滿）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">18:30</div><div class="t-text">⚓ 郵輪從基隆出發，甲板觀看出港儀式，拍台灣基隆港再見照</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">19:30–21:00</div><div class="t-text">🍴 主餐廳或自助餐正式晚餐</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">21:30–23:00</div><div class="t-text">🎭 劇場大秀（MSC Carousel，免費），感受郵輪娛樂氛圍</div></div>
+    </div>
+    <div class="tip">✅ Day1重點：完成安全演習、探索船上設施、預訂餐廳</div>
+  </div>
+
+  <div class="day-header"><div>Day 2｜6/22（週一）航行日</div><span>全天在海上 — 享受船上設施</span></div>
+  <div class="card">
+    <div class="timeline">
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">07:00–08:30</div><div class="t-text">☀️ 早起甲板看日出（東海日出，視天氣而定），自助餐早餐（早去人少）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">09:00–11:30</div><div class="t-text">🏊 泳池甲板（早上人少最適合），或預約Galaxy VR體驗（熱門項目早去）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">12:00–13:00</div><div class="t-text">🍽 自助餐午餐（選擇豐富，注意少量多試）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">14:00–16:00</div><div class="t-text">🎳 保齡球 / 卡拉OK / 健身房，或在甲板躺椅閱讀放鬆</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">16:00–18:00</div><div class="t-text">💆 SPA體驗（如有預約），或享受甲板黃昏景致</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">19:00</div><div class="t-text">🌟 正式晚宴（主餐廳），郵輪上難得的正式用餐體驗</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">21:30</div><div class="t-text">🎰 嘗試賭場（僅出海時開放）或夜間甲板看星星</div></div>
+    </div>
+    <div class="tip">💡 航行日是真正享受郵輪樂趣的好時機，不要急著回房休息</div>
+  </div>
+
+  <div class="day-header"><div>Day 3｜6/23（週二）宮古島</div><span>靠港日 — 全力探索宮古島</span></div>
+  <div class="card">
+    <div class="timeline">
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">07:00</div><div class="t-text">🌅 早餐（靠港日自助餐很擠，建議6:30–7:00前去）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">08:30–09:00</div><div class="t-text">🛂 下船通關（帶好護照+入境卡）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">09:00–11:30</div><div class="t-text">🏖 與那霸前濱海灘（計程車約¥2,000–3,000，遊泳+拍照）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">11:30–13:00</div><div class="t-text">🍜 平良市區午餐（宮古そば），¥800–1,200</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">13:00–15:30</div><div class="t-text">🛒 Cosmos藥妝 + サンエー超市掃貨 + 雪塩伴手禮</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">15:30–16:30</div><div class="t-text">🗼 東平安名崎燈塔景觀打卡（視剩餘時間決定）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">16:30</div><div class="t-text">⚠️ 返船！確認返船時間，寧早勿晚（船不等人）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">晚上</div><div class="t-text">🌊 船繼續開往沖繩，甲板看夜景，整理戰利品</div></div>
+    </div>
+  </div>
+
+  <div class="day-header"><div>Day 4｜6/24（週三）沖繩那霸</div><span>靠港日 — 國際通大採購</span></div>
+  <div class="card">
+    <div class="timeline">
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">07:30</div><div class="t-text">🍽 早餐後盡快下船（沖繩港口到國際通約15–20分鐘車程）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">09:00–11:00</div><div class="t-text">🏰 首里城（世界遺產，門票¥400，值得一去）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">11:00–13:00</div><div class="t-text">🛍 国際通逛街：紅芋タルト御菓子御殿、ちんすこう名店</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">13:00–14:00</div><div class="t-text">🍱 国際通旁午餐（沖繩チャンプルー、ソーキそば）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">14:00–16:30</div><div class="t-text">💊 Donki + 松本清藥妝大採購（帶夠袋子！準備好購物清單）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">16:30</div><div class="t-text">⚠️ 返船（確認最晚時間，通常17:00–18:00）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">晚上</div><div class="t-text">🎭 船上最後一個夜晚大秀 + 特色餐廳晚餐（如有預約）</div></div>
+    </div>
+    <div class="warn">⚠️ 沖繩是採購主戰場，帶夠購物袋+行李空間，Donki人多請保持警覺</div>
+  </div>
+
+  <div class="day-header"><div>Day 5｜6/25（週四）返回基隆</div><span>回程日 — 從容準備下船</span></div>
+  <div class="card">
+    <div class="timeline">
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">前夜</div><div class="t-text">📦 行李整理，將托運行李放門口（依船方通知時間）</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">07:00–09:00</div><div class="t-text">🍽 最後一次船上早餐，拍下郵輪最後景致</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">09:00–10:00</div><div class="t-text">💳 確認船卡帳單（在MSC App上查看），有疑問立即到服務台</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">10:00–11:00</div><div class="t-text">🚢 依照叫號順序下船，取回托運行李</div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-time">11:00後</div><div class="t-text">🏠 前往台灣各地（搭乘客運/火車），結束美好五天四夜</div></div>
+    </div>
+    <div class="tip">✅ 下船日早起可避開人潮，行李多的人建議選後段叫號慢慢走</div>
+  </div>
+</div>
+
+<!-- ============================= SECTION 8 ============================= -->
+<div class="section" id="s8">
+  <div class="sec-header">
+    <div class="sec-icon">⚠️</div>
+    <div class="sec-title">郵輪新手最容易犯的20個錯誤</div>
+  </div>
+
+  <div class="card">
+    <div class="mistake-item"><div class="mistake-num">01</div><div>忘記線上報到，現場排隊超過1小時才能登船</div></div>
+    <div class="mistake-item"><div class="mistake-num">02</div><div>重要物品放托運行李 — 托運到房間需2–4小時，登船後無衣物可換</div></div>
+    <div class="mistake-item"><div class="mistake-num">03</div><div>不帶歐規插頭轉接頭 — MSC船艙插座為歐規，台灣電器無法直接使用</div></div>
+    <div class="mistake-item"><div class="mistake-num">04</div><div>以為船上所有餐廳都免費 — 特色餐廳需額外付費，沒確認就點了</div></div>
+    <div class="mistake-item"><div class="mistake-num">05</div><div>靠港日不確認返船時間 — 錯過返船時間，船不等你，後果很嚴重</div></div>
+    <div class="mistake-item"><div class="mistake-num">06</div><div>帶肉乾/水果入境日本 — 被海關沒收還可能被罰款，得不償失</div></div>
+    <div class="mistake-item"><div class="mistake-num">07</div><div>忘記暈船藥 — 出發前1–2小時才有效，等到暈了再吃已來不及</div></div>
+    <div class="mistake-item"><div class="mistake-num">08</div><div>沒換日幣或換太少 — 宮古島沒有方便換匯處，港口匯率也差</div></div>
+    <div class="mistake-item"><div class="mistake-num">09</div><div>不知道每日行程表在哪 — 應該每晚看放在房門口的Daily Planner</div></div>
+    <div class="mistake-item"><div class="mistake-num">10</div><div>泳池帶了大毛巾卻忘記 — 其實泳池旁有提供借用，不需另外帶</div></div>
+    <div class="mistake-item"><div class="mistake-num">11</div><div>正式晚宴穿太隨便 — MSC正式晚宴有著裝規定，需穿正式服裝</div></div>
+    <div class="mistake-item"><div class="mistake-num">12</div><div>沒有提前預訂特色餐廳 — 登船當天不馬上預訂，熱門時段很快客滿</div></div>
+    <div class="mistake-item"><div class="mistake-num">13</div><div>把船卡當一般卡片對待 — 船卡=房卡+消費卡+門禁卡，弄丟很麻煩</div></div>
+    <div class="mistake-item"><div class="mistake-num">14</div><div>安全演習缺席 — 安全演習是強制的，缺席會被工作人員追蹤</div></div>
+    <div class="mistake-item"><div class="mistake-num">15</div><div>宮古島沒提前安排交通 — 宮古島公車稀少，到港後才找車很浪費時間</div></div>
+    <div class="mistake-item"><div class="mistake-num">16</div><div>岸上時間算太滿 — 回碼頭的時間要預留緩衝，迷路/塞車導致趕不上船</div></div>
+    <div class="mistake-item"><div class="mistake-num">17</div><div>沒有讀懂帳單就下船 — 帳單如有誤扣，下船後很難追回，應提前核對</div></div>
+    <div class="mistake-item"><div class="mistake-num">18</div><div>買太多重物 — 採購時沒考慮行李重量，回程超重又不好搬</div></div>
+    <div class="mistake-item"><div class="mistake-num">19</div><div>買船上WiFi最貴的方案 — 靠港日用當地SIM即可，不需整程購船上WiFi</div></div>
+    <div class="mistake-item"><div class="mistake-num">20</div><div>沒拍下船艙號碼 — 郵輪走廊相似，剛登船容易找不到自己的房間，先拍下來</div></div>
+  </div>
+</div>
+
+<!-- ============================= SECTION 9 ============================= -->
+<div class="section" id="s9">
+  <div class="sec-header">
+    <div class="sec-icon">⚡</div>
+    <div class="sec-title">懶人包 &amp; 出發前 Checklist</div>
+  </div>
+
+  <div class="highlight-box">
+    <h3>⚡ 超精簡懶人包（10點必記）</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>重點</th><th>行動</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>護照效期</td><td>確認超過2026/12/21</td></tr>
+          <tr><td>2</td><td>線上報到</td><td>出發前14天完成MSC App報到</td></tr>
+          <tr><td>3</td><td>日幣</td><td>宮古¥20,000 + 沖繩¥35,000 = 共約¥55,000/人</td></tr>
+          <tr><td>4</td><td>歐規轉接頭</td><td>船艙插座是歐規，必帶</td></tr>
+          <tr><td>5</td><td>暈船藥</td><td>出海前1小時服用，備用手環</td></tr>
+          <tr><td>6</td><td>正式服裝</td><td>至少1套正式晚宴穿著</td></tr>
+          <tr><td>7</td><td>返船時間</td><td>每次靠港都確認最晚返船時間</td></tr>
+          <tr><td>8</td><td>不帶食物入境</td><td>肉類/水果勿帶，違規高額罰款</td></tr>
+          <tr><td>9</td><td>船卡隨身</td><td>是房卡+消費卡，時刻帶著</td></tr>
+          <tr><td>10</td><td>帳單確認</td><td>下船前一天核對MSC App帳單</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="progress-wrap" id="check-progress-s9">
+    <div class="progress-label">
+      <span>✅ Checklist 完成度</span>
+      <span id="prog-text-s9">0 / 0 項</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill-s9" style="width:0%"></div></div>
+    <div class="progress-pct" id="prog-pct-s9">0%</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>📅 出發前3天 Checklist</h3>
+      <ul class="checklist">
+        <li><input type="checkbox" id="d1"><label for="d1">完成MSC線上報到（填護照資料）</label></li>
+        <li><input type="checkbox" id="d2"><label for="d2">確認護照效期 ≥ 2026/12/21</label></li>
+        <li><input type="checkbox" id="d3"><label for="d3">兌換日幣（宮古+沖繩合計每人≥¥55,000）</label></li>
+        <li><input type="checkbox" id="d4"><label for="d4">下載並設定 MSC for Me APP</label></li>
+        <li><input type="checkbox" id="d5"><label for="d5">完成Visit Japan Web線上申報</label></li>
+        <li><input type="checkbox" id="d6"><label for="d6">確認旅遊保險已投保</label></li>
+        <li><input type="checkbox" id="d7"><label for="d7">購買/備齊暈船藥、暈船手環</label></li>
+        <li><input type="checkbox" id="d8"><label for="d8">準備歐規插頭轉接頭</label></li>
+        <li><input type="checkbox" id="d9"><label for="d9">確認登船文件（確認函）已列印或存手機</label></li>
+        <li><input type="checkbox" id="d10"><label for="d10">整理購物清單（Donki必買清單）</label></li>
+        <li><input type="checkbox" id="d11"><label for="d11">確認行李空間預留給採買戰利品</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🚢 登船當天 Checklist</h3>
+      <ul class="checklist">
+        <li><input type="checkbox" id="e1"><label for="e1">護照放最外層，隨手可取</label></li>
+        <li><input type="checkbox" id="e2"><label for="e2">登船文件/確認函確認帶齊</label></li>
+        <li><input type="checkbox" id="e3"><label for="e3">隨身包含：換洗衣物、藥品、充電線（托運到房需時）</label></li>
+        <li><input type="checkbox" id="e4"><label for="e4">日幣現金確認</label></li>
+        <li><input type="checkbox" id="e5"><label for="e5">暈船藥上船前1小時服用</label></li>
+        <li><input type="checkbox" id="e6"><label for="e6">登船後立刻拍下船艙號碼（防走錯）</label></li>
+        <li><input type="checkbox" id="e7"><label for="e7">確認安全演習時間並出席</label></li>
+        <li><input type="checkbox" id="e8"><label for="e8">前往服務台確認/預訂餐廳</label></li>
+        <li><input type="checkbox" id="e9"><label for="e9">在MSC App確認行程表與帳單設定</label></li>
+        <li><input type="checkbox" id="e10"><label for="e10">找到救生衣位置（衣櫥內）</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>✈ 回台前 Checklist</h3>
+    <ul class="checklist" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0">
+      <li><input type="checkbox" id="f1"><label for="f1">核對MSC App帳單，確認無誤扣款</label></li>
+      <li><input type="checkbox" id="f2"><label for="f2">前夜將托運行李放門口（依船方通知）</label></li>
+      <li><input type="checkbox" id="f3"><label for="f3">確認下船時間與集合點</label></li>
+      <li><input type="checkbox" id="f4"><label for="f4">護照、船卡、現金確認帶齊</label></li>
+      <li><input type="checkbox" id="f5"><label for="f5">戰利品行李重量確認（避免超重）</label></li>
+      <li><input type="checkbox" id="f6"><label for="f6">確認肉類、水果等不可入台物品已消耗</label></li>
+      <li><input type="checkbox" id="f7"><label for="f7">確認退稅單已辦好（日本港口）</label></li>
+      <li><input type="checkbox" id="f8"><label for="f8">房間各角落確認無遺忘物品</label></li>
+      <li><input type="checkbox" id="f9"><label for="f9">下船後清點所有行李件數</label></li>
+      <li><input type="checkbox" id="f10"><label for="f10">拍照留念！珍藏美好記憶 🌊</label></li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- end .main -->
+
+<!-- Back to Top -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到頂部">↑</button>
+
+<script>
+// ===== Navigation =====
+function showSec(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  updateAllProgress();
+}
+
+// ===== Progress Bar (Section 2) =====
+function updateProgress() {
+  const sec = document.getElementById('s2');
+  if (!sec || !sec.classList.contains('active')) return;
+  const boxes = sec.querySelectorAll('input[type=checkbox]');
+  const checked = sec.querySelectorAll('input[type=checkbox]:checked');
+  const wrap = document.getElementById('check-progress');
+  if (!wrap) return;
+  if (boxes.length === 0) { wrap.style.display = 'none'; return; }
+  wrap.style.display = 'block';
+  const pct = boxes.length ? Math.round(checked.length / boxes.length * 100) : 0;
+  document.getElementById('prog-text').textContent = checked.length + ' / ' + boxes.length + ' 項';
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-pct').textContent = pct + '%';
+}
+
+// ===== Progress Bar (Section 9) =====
+function updateProgressS9() {
+  const sec = document.getElementById('s9');
+  if (!sec || !sec.classList.contains('active')) return;
+  const boxes = sec.querySelectorAll('input[type=checkbox]');
+  const checked = sec.querySelectorAll('input[type=checkbox]:checked');
+  const wrap = document.getElementById('check-progress-s9');
+  if (!wrap) return;
+  if (boxes.length === 0) { wrap.style.display = 'none'; return; }
+  wrap.style.display = 'block';
+  const pct = boxes.length ? Math.round(checked.length / boxes.length * 100) : 0;
+  document.getElementById('prog-text-s9').textContent = checked.length + ' / ' + boxes.length + ' 項';
+  document.getElementById('prog-fill-s9').style.width = pct + '%';
+  document.getElementById('prog-pct-s9').textContent = pct + '%';
+}
+
+function updateAllProgress() {
+  updateProgress();
+  updateProgressS9();
+}
+
+// ===== Checkbox listeners =====
+document.querySelectorAll('input[type=checkbox]').forEach(cb => {
+  cb.addEventListener('change', updateAllProgress);
+});
+
+// ===== Back to Top =====
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('back-top');
+  if (window.scrollY > 300) btn.classList.add('show');
+  else btn.classList.remove('show');
+});
+
+// ===== Init =====
+updateAllProgress();
+</script>
+</body>
+</html>
